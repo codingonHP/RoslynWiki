@@ -408,21 +408,21 @@ namespace TransformationCS
                                            .WithFilePath(programPath);
 
             String rewriterPath = @"..\..\TypeInferenceRewriter.cs";
-            String rewriterText = File.ReadAllText(rewriterText);
+            String rewriterText = File.ReadAllText(rewriterPath);
             SyntaxTree rewriterTree =
                            CSharpSyntaxTree.ParseText(rewriterText)
                                            .WithFilePath(rewriterPath);
 
             SyntaxTree[] sourceTrees = { programTree, rewriterTree };
 
-            MetadataReference mscorlib =
-                    MetadataReference.CreateFromAssembly(typeof(object).Assembly);
-            MetadataReference codeAnalysis =
-                    MetadataReference.CreateFromAssembly(typeof(SyntaxTree).Assembly);
-            MetadataReference csharpCodeAnalysis =
-                    MetadataReference.CreateFromAssembly(typeof(CSharpSyntaxTree).Assembly);
+            PortableExecutableReference mscorlib =
+                    MetadataReference.CreateFromFile(typeof(object).Assembly.Location);
+            PortableExecutableReference codeAnalysis =
+                    MetadataReference.CreateFromFile(typeof(SyntaxTree).Assembly.Location);
+            PortableExecutableReference csharpCodeAnalysis =
+                    MetadataReference.CreateFromFile(typeof(CSharpSyntaxTree).Assembly.Location);
 
-            MetadataReference[] references = { mscorlib, codeAnalysis, csharpCodeAnalysis };
+            PortableExecutableReference[] references = { mscorlib, codeAnalysis, csharpCodeAnalysis };
 
             return CSharpCompilation.Create("TransformationCS",
                                             sourceTrees,
@@ -474,7 +474,7 @@ namespace TransformationCS
                                            .WithFilePath(programPath);
 
             String rewriterPath = @"..\..\TypeInferenceRewriter.cs";
-            String rewriterText = File.ReadAllText(rewriterText);
+            String rewriterText = File.ReadAllText(rewriterPath);
             SyntaxTree rewriterTree =
                            CSharpSyntaxTree.ParseText(rewriterText)
                                            .WithFilePath(rewriterPath);
@@ -482,14 +482,14 @@ namespace TransformationCS
 
             SyntaxTree[] sourceTrees = { programTree, rewriterTree };
 
-            MetadataReference mscorlib =
-                    MetadataReference.CreateFromAssembly(typeof(object).Assembly);
-            MetadataReference codeAnalysis =
-                    MetadataReference.CreateFromAssembly(typeof(SyntaxTree).Assembly);
-            MetadataReference csharpCodeAnalysis =
-                    MetadataReference.CreateFromAssembly(typeof(CSharpSyntaxTree).Assembly);
+            PortableExecutableReference mscorlib =
+                    MetadataReference.CreateFromFile(typeof(object).Assembly.Location);
+            PortableExecutableReference codeAnalysis =
+                    MetadataReference.CreateFromFile(typeof(SyntaxTree).Assembly.Location);
+            PortableExecutableReference csharpCodeAnalysis =
+                    MetadataReference.CreateFromFile(typeof(CSharpSyntaxTree).Assembly.Location);
 
-            MetadataReference[] references = { mscorlib, codeAnalysis, csharpCodeAnalysis };
+            PortableExecutableReference[] references = { mscorlib, codeAnalysis, csharpCodeAnalysis };
 
             return CSharpCompilation.Create("TransformationCS",
                                             sourceTrees,
